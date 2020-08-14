@@ -10,16 +10,17 @@ const doc = sketch.getSelectedDocument();
 const selectedLayers = doc.selectedLayers;
 const selectedCount = selectedLayers.length;
 
-export default async function () {
+// Async is available via polyfill, add if needed
+export default function () {
   if (selectedCount === 0) {
-    sketch.UI.alert("Failed", "No layers are selected.");
+    sketch.UI.message("No layers are selected.");
   } else {
     launchExport(selectedLayers);
-    sketch.UI.alert(`Success`, `${selectedCount} layers are launched.`);
+    sketch.UI.message(`Success! ${selectedCount} layers are launched.`);
   }
 }
 
-async function launchExport(selectedLayers) {
+function launchExport(selectedLayers) {
   // Loop through each selected Artboard
   for (let i = 0; i < selectedLayers.layers.length; i++) {
     let artboardName = selectedLayers.layers[i].name;
