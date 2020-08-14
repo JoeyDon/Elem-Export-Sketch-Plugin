@@ -10,16 +10,16 @@ const doc = sketch.getSelectedDocument();
 const selectedLayers = doc.selectedLayers;
 const selectedCount = selectedLayers.length;
 
-export default function () {
+export default async function () {
   if (selectedCount === 0) {
-    sketch.UI.alert("Failed", "No layers are selected.");
+    // sketch.UI.alert("Failed", "No layers are selected.");
   } else {
     launchExport(selectedLayers);
-    sketch.UI.alert(`Success`, `${selectedCount} layers are launched.`);
+    // sketch.UI.alert(`Success`, `${selectedCount} layers are launched.`);
   }
 }
 
-function launchExport(selectedLayers) {
+async function launchExport(selectedLayers) {
   for (let i = 0; i < selectedLayers.layers.length; i++) {
     let artboardName = selectedLayers.layers[i].name;
 
@@ -35,7 +35,7 @@ function launchExport(selectedLayers) {
       const options = {
         scales: 2,
         formats: "png",
-        output: `~/Documents/Sketch Exports/${todayDate}/${artboardName}`,
+        output: `~/Documents/Sketch Exports/${todayDate}/new`,
       };
       sketch.export(selectedLayers.layers, options);
     }

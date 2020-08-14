@@ -24,5 +24,8 @@
   "devDependencies": {
     "@skpm/builder": "^0.7.0"
   },
-  "author": "Joey <Joey.don0905@gmail.com>"
+  "author": "Joey <Joey.don0905@gmail.com>",
+  "dependencies": {
+    "@babel/polyfill": "^7.10.4"
+  }
 }
