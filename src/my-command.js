@@ -41,7 +41,7 @@ async function launchExport(selectedLayers) {
       const options = {
         scales: 2,
         formats: "png",
-        output: `~/Documents/Sketch Exports/${todayDate}/new`,
+        output: `~/Documents/Sketch Exports/${todayDate}/${artboardName}`,
       };
       sketch.export(selectedLayers.layers, options);
     }
