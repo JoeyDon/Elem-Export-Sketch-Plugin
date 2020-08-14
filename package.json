@@ -1,8 +1,8 @@
 {
   "name": "elem-export",
   "repository": "https://github.com/JoeyDon/Elem-Export-Sketch-Plugin.git",
-  "description": "",
-  "version": "0.1.0",
+  "description": "This plugin will export all assets of the SELECTED layer",
+  "version": "1.0.0",
   "engines": {
     "sketch": ">=49.0"
   },
