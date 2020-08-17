@@ -39,12 +39,26 @@ function launchExport(selectedLayers) {
       selectedLayers.layers[i].layers[j].hidden = false;
 
       // Screenshot & output
-      const options = {
+      const pngoptions = {
         scales: 2,
         formats: "png",
         output: `~/Documents/Sketch Exports/${todayDate}/${artboardName}`,
       };
-      sketch.export(selectedLayers.layers, options);
+      sketch.export(selectedLayers.layers, pngoptions);
+
+      // const jpgoptions = {
+      //   scales: 2,
+      //   formats: "jpg",
+      //   output: `~/Documents/Sketch Exports/${todayDate}/${artboardName}`,
+      //   compression: 0.4,
+      // };
+      // sketch.export(selectedLayers.layers, jpgoptions);
+
+      // Display all elements
+      selectedLayers.layers[i].layers.map((x) => {
+        x.hidden = false;
+        return x;
+      });
     }
 
     // Changeback the Artboard name
