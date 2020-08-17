@@ -1,8 +1,6 @@
 var sketch = require("sketch/dom");
-var ui = require("sketch/ui");
+var document = sketch.getSelectedDocument();
 var today = new Date();
-var time =
-  today.getHours() + "-" + today.getMinutes() + "-" + today.getSeconds();
 var dd = String(today.getDate()).padStart(2, "0");
 var mm = String(today.getMonth() + 1).padStart(2, "0"); //January is 0!
 var yyyy = today.getFullYear();
@@ -15,10 +13,10 @@ const selectedCount = selectedLayers.length;
 // Async is available via polyfill, add if needed
 export default function () {
   if (selectedCount === 0) {
-    ui.message("No layers are selected.");
+    sketch.UI.message("No layers are selected.");
   } else {
     launchExport(selectedLayers);
-    ui.message(`Success! ${selectedCount} layers are launched.`);
+    sketch.UI.message(`Success! ${selectedCount} layers are launched.`);
   }
 }
 
@@ -29,7 +27,7 @@ function launchExport(selectedLayers) {
 
     // Loop through each element in Artboards[i]
     for (let j = 0; j < selectedLayers.layers[i].layers.length; j++) {
-      selectedLayers.layers[i].name = `${artboardName}-${j.toString()}`;
+      selectedLayers.layers[i].name = `${j.toString()}`;
 
       // Hide all elements
       selectedLayers.layers[i].layers.map((x) => {
@@ -40,13 +38,23 @@ function launchExport(selectedLayers) {
       // Only un-hide the j-th element
       selectedLayers.layers[i].layers[j].hidden = false;
 
+      // Screenshot & output
       const pngoptions = {
         scales: 2,
         formats: "png",
-        output: `~/Documents/Sketch Exports/${todayDate}/${time}`,
+        output: `~/Documents/Sketch Exports/${todayDate}/${artboardName}`,
       };
       sketch.export(selectedLayers.layers, pngoptions);
 
+      // const jpgoptions = {
+      //   scales: 2,
+      //   formats: "jpg",
+      //   output: `~/Documents/Sketch Exports/${todayDate}/${artboardName}`,
+      //   compression: 0.4,
+      // };
+      // sketch.export(selectedLayers.layers, jpgoptions);
+
+      // Display all elements
       selectedLayers.layers[i].layers.map((x) => {
         x.hidden = false;
         return x;
