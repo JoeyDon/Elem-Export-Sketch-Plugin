@@ -16,7 +16,7 @@ const selectedCount = selectedLayers.length;
 export default function () {
   if (selectedCount === 0) {
     ui.getInputFromUser(
-      "What do you want to output",
+      "What elements you want to skip? It will export the all elements except the type you select.",
       {
         type: ui.INPUT_TYPE.selection,
         possibleValues: ["Text", "ShapePath", "SymbolInstance", "Group"],
@@ -31,7 +31,7 @@ export default function () {
       }
     );
   } else {
-    let launchTarget;
+    let skipTarget;
 
     // Get user input
     ui.getInputFromUser(
@@ -45,53 +45,38 @@ export default function () {
           // most likely the user canceled the input
           return;
         }
-        launchTarget = value;
+        skipTarget = value;
         console.log(value);
       }
     );
 
     // Main launch function
-    launchExport(selectedLayers, launchTarget);
+    launchExport(selectedLayers, skipTarget);
     ui.message(`Success! ${selectedCount} layers are launched.`);
   }
 }
 
-function launchExport(selectedLayers, launchTarget) {
+function launchExport(selectedLayers, skipTarget) {
   // Loop through each selected Artboard
   for (let i = 0; i < selectedLayers.layers.length; i++) {
     let artboardName = selectedLayers.layers[i].name;
 
     // Loop through each element in Artboards[i]
     for (let j = 0; j < selectedLayers.layers[i].layers.length; j++) {
-      // Hide all elements
+      // Hide the element that user selected
       selectedLayers.layers[i].layers.map((x) => {
-        x.hidden = true;
-        return x;
-      });
-
-      // Only un-hide the j-th element
-      selectedLayers.layers[i].layers[j].hidden = false;
-
-      console.log(JSON.stringify(selectedLayers.layers[i].layers[j]));
-
-      let pngoptions;
-      if (selectedLayers.layers[i].layers[j].type === launchTarget) {
-        // Rename the file - Because we export parent layer, so rename the parent layer
-        selectedLayers.layers[i].name = `${launchTarget}-${i + 1}-${j + 1}`;
-        pngoptions = {
-          scales: 2,
-          formats: "png",
-          output: `~/Documents/Sketch Exports/${todayDate}/${time}`,
-        };
-        sketch.export(selectedLayers.layers, pngoptions);
-      }
-
-      selectedLayers.layers[i].layers.map((x) => {
-        x.hidden = false;
+        if (x.type === skipTarget) x.hidden = true;
         return x;
       });
     }
 
+    let jpgoptions = {
+      scales: 2,
+      formats: "jpg",
+      compression: 0.4,
+      output: `~/Documents/Sketch Exports/${todayDate}/${time}`,
+    };
+    sketch.export(selectedLayers.layers, jpgoptions);
     // Changeback the Artboard name
     selectedLayers.layers[i].name = artboardName;
   }

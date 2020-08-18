@@ -8,13 +8,13 @@
       "script": "./ExportSelected.js"
     },
     {
-      "name": "ExportExcept",
-      "identifier": "ExportExcept",
-      "script": "./ExportExcept.js"
+      "name": "ExportAllExcept",
+      "identifier": "ExportAllExcept",
+      "script": "./ExportAllExcept.js"
     }
   ],
   "menu": {
     "title": "elem-export",
-    "items": ["ExportSelected", "ExportExcept"]
+    "items": ["ExportSelected", "ExportAllExcept"]
   }
 }

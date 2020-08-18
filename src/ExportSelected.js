@@ -16,7 +16,7 @@ const selectedCount = selectedLayers.length;
 export default function () {
   if (selectedCount === 0) {
     ui.getInputFromUser(
-      "What do you want to output",
+      "What types of elements you want to output? It will export all selected type one by one.",
       {
         type: ui.INPUT_TYPE.selection,
         possibleValues: ["Text", "ShapePath", "SymbolInstance", "Group"],
