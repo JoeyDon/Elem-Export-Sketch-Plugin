@@ -4,17 +4,17 @@
   "commands": [
     {
       "name": "Launch",
-      "identifier": "elem-export.my-command-identifier",
+      "identifier": "elem-export.launch",
       "script": "./launch.js"
     },
     {
       "name": "Launch2",
-      "identifier": "elem-export.my-command-identifier",
-      "script": "./launch.js"
+      "identifier": "elem-export.launch2",
+      "script": "./launch2.js"
     }
   ],
   "menu": {
     "title": "elem-export",
-    "items": ["elem-export.my-command-identifier"]
+    "items": ["elem-export.launch", "elem-export.launch2"]
   }
 }
