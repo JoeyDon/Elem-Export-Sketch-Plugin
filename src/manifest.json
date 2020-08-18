@@ -3,18 +3,18 @@
   "icon": "icon.png",
   "commands": [
     {
-      "name": "Launch",
-      "identifier": "elem-export.launch",
-      "script": "./launch.js"
+      "name": "ExportSelected",
+      "identifier": "ExportSelected",
+      "script": "./ExportSelected.js"
     },
     {
-      "name": "Launch2",
-      "identifier": "elem-export.launch2",
-      "script": "./launch2.js"
+      "name": "ExportExcept",
+      "identifier": "ExportExcept",
+      "script": "./ExportExcept.js"
     }
   ],
   "menu": {
     "title": "elem-export",
-    "items": ["elem-export.launch", "elem-export.launch2"]
+    "items": ["ExportSelected", "ExportExcept"]
   }
 }
